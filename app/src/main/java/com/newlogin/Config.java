@@ -2,12 +2,11 @@ package com.newlogin;
 
 import android.app.Application;
 
-/**
- * Created by Belal on 11/14/2015.
- */
 public class Config extends Application {
     //URL to our login.php file
-    public static final String LOGIN_URL = "http://192.168.1.102/android/login.php";
+    public static final String LOGIN_URL = "http://52.37.139.194/android/login.php";
+    public static final String REGISTER_URL = "http://52.37.139.194/android/reg.php";
+    public static final String HISTORY_URL = "http://52.37.139.194/android/history.php";
 
     //Keys for email and password as defined in our $_POST['key'] in login.php
     public static final String KEY_EMAIL = "email";

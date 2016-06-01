@@ -54,13 +54,13 @@ public class History extends Activity {
                 InputStream isr = null;
                 try {
                         HttpClient httpclient = new DefaultHttpClient();
-                        HttpPost httppost = new HttpPost("http://192.168.1.102/history/json.php"); //YOUR PHP SCRIPT ADDRESS
+                        HttpPost httppost = new HttpPost(Config.HISTORY_URL); //YOUR PHP SCRIPT ADDRESS
                         HttpResponse response = httpclient.execute(httppost);
                         HttpEntity entity = response.getEntity();
                         isr = entity.getContent();
                 } catch (Exception e) {
                         Log.e("log_tag", "Error in http connection " + e.toString());
-                        name.setText("Couldnt connect to database");
+                        name.setText("Couldn't connect to database");
                 }
                 //convert response to string
                 try {
