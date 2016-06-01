@@ -31,7 +31,7 @@
         android:layout_width="114dp"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Age"
+        android:text="Date"
         android:id="@+id/textView4" />
 
     <EditText
