@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.newlogin.Config;
 import com.newlogin.R;
 import com.newlogin.RegisterUserClass;
 
@@ -24,7 +25,7 @@ public class DonatesBlood extends AppCompatActivity implements View.OnClickListe
 
     private Button buttonRegister;
 
-    private static final String REGISTER_URL = "http://192.168.1.102/android/donor.php";
+    private static final String REGISTER_URL = Config.DONOR_URL;
 
 
     @Override

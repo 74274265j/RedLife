@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.newlogin.Config;
 import com.newlogin.R;
 import com.newlogin.RegisterUserClass;
 
@@ -24,7 +25,7 @@ public class MakeRequest extends AppCompatActivity implements View.OnClickListen
 
     private Button buttonRegister;
 
-    private static final String REGISTER_URL = "http://192.168.1.102/android/reciever.php";
+    private static final String REGISTER_URL = Config.MAKEREQ_URL;
 
 
     @Override
