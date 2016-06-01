@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <string name="player_error">Error initializing YouTube player</string>
     <string name="app_name">Android Login and Registration</string>
     <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>

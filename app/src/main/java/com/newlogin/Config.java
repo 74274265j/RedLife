@@ -10,6 +10,7 @@ public class Config extends Application {
     public static final String DONOR_URL = "http://52.37.139.194/android/donor.php";
     //public static final String DONOR_URL = "http://192.168.1.102/android/donor.php";
     public static final String MAKEREQ_URL = "http://52.37.139.194/android/reciever.php";
+    public static final String YOUTUBE_API_KEY = "AIzaSyDnqnQBUJSxDv0otX7Qh9OFSwbZWzCvJbg";
 
     //Keys for email and password as defined in our $_POST['key'] in login.php
     public static final String KEY_EMAIL = "email";
