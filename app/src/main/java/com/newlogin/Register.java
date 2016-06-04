@@ -14,7 +14,6 @@ import java.util.HashMap;
 public class Register extends AppCompatActivity implements View.OnClickListener{
 
     private EditText editTextName;
-    private EditText editTextUsername;
     private EditText editTextPassword;
     private EditText editTextEmail;
 
@@ -28,10 +27,9 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register);
 
-        editTextName = (EditText) findViewById(R.id.et1);
-        editTextUsername = (EditText) findViewById(R.id.et2);
-        editTextPassword = (EditText) findViewById(R.id.et4);
-        editTextEmail = (EditText) findViewById(R.id.et3);
+        editTextName = (EditText) findViewById(R.id.etName);
+        editTextPassword = (EditText) findViewById(R.id.etPassword);
+        editTextEmail = (EditText) findViewById(R.id.etEmail);
 
         buttonRegister = (Button) findViewById(R.id.buttonRegister);
 
@@ -47,14 +45,13 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
 
     private void registerUser() {
         String name = editTextName.getText().toString().trim().toLowerCase();
-        String username = editTextUsername.getText().toString().trim().toLowerCase();
         String password = editTextPassword.getText().toString().trim().toLowerCase();
         String email = editTextEmail.getText().toString().trim().toLowerCase();
 
-        register(name,username,password,email);
+        register(name,password,email);
     }
 
-    private void register(String name, String username, String password, String email) {
+    private void register(String name, String password, String email) {
         class RegisterUser extends AsyncTask<String, Void, String>{
             ProgressDialog loading;
             RegisterUserClass ruc = new RegisterUserClass();
@@ -76,11 +73,10 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
             @Override
             protected String doInBackground(String... params) {
 
-                HashMap<String, String> data = new HashMap<String,String>();
+                HashMap<String, String> data = new HashMap<String, String>();
                 data.put("name",params[0]);
-                data.put("username",params[1]);
-                data.put("email",params[2]);
-                data.put("password",params[3]);
+                data.put("email",params[1]);
+                data.put("password",params[2]);
 
                 String result = ruc.sendPostRequest(REGISTER_URL,data);
 
@@ -89,6 +85,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
         }
 
         RegisterUser ru = new RegisterUser();
-        ru.execute(name,username,email,password);
+        ru.execute(name,email,password);
     }
 }

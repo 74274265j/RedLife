@@ -63,8 +63,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
                 android:ems="10"
-                android:id="@+id/et1"
-                android:layout_gravity="center_horizontal"
+                android:id="@+id/etName"
                 android:layout_weight="0.04"
                 android:hint="Enter Your Name"
                 android:singleLine="true" />
@@ -72,21 +71,9 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
-                android:ems="10"
-                android:id="@+id/et2"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight="0.04"
-                android:hint="Username"
-                android:singleLine="true" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
                 android:ems="10"
-                android:id="@+id/et3"
-                android:layout_gravity="center_horizontal"
+                android:id="@+id/etEmail"
                 android:layout_weight="0.04"
                 android:hint="E-mail Address"
                 android:singleLine="true" />
@@ -96,8 +83,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
                 android:ems="10"
-                android:id="@+id/et4"
-                android:layout_gravity="center_horizontal"
+                android:id="@+id/etPassword"
                 android:layout_weight="0.04"
                 android:hint="******"
                 android:singleLine="true" />
