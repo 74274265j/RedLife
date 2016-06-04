@@ -2,16 +2,7 @@
 <resources>
     <string name="player_error">Error initializing YouTube player</string>
     <string name="app_name">RedLife</string>
-    <string name="hint_email">Email</string>
-    <string name="hint_password">Password</string>
-    <string name="hint_name">Fullname</string>
-    <string name="btn_login">LOGIN</string>
-    <string name="btn_register">REGISTER</string>
-    <string name="btn_link_to_register">Not a member? Sign up now.</string>
-    <string name="btn_link_to_login">Already registred! Login Me.</string>
-    <string name="welcome">Welcome</string>
     <string name="btn_logout">LOGOUT</string>
-    <string name="name">Fullname</string>
     <string-array name="listdata">
         <item>item 1</item>
         <item>item 2</item>
@@ -36,7 +27,6 @@
         <item>item 20</item>
     </string-array>
 
-    <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_main">Push Notifications</string>
     <string name="error_config">Please set the %1$s constant and recompile the app.</string>
@@ -59,6 +49,13 @@
 
     <string name="action_settings">Settings</string>
     <string name="GetLocation">GetLocation</string>
+    <string name="logo_desc">RedLife Logo</string>
+    <string name="email">E-mail Address</string>
+    <string name="password">******</string>
+    <string name="button_login">Login</string>
+    <string name="textview_register">Never donated Blood?\nStart Donating today.\nSign-up Here</string>
+    <string name="button_register">Register</string>
+    <string name="name">Enter Your Name</string>
 
 
 </resources>
