@@ -34,7 +34,7 @@ public class NeedBlood extends Activity {
         lView.setAdapter(adpt);
 
         // Exec async load task
-        (new AsyncListViewLoader()).execute(Config.LIST_VIEW);
+        (new AsyncListViewLoader()).execute(Config.HISTORY_URL);
     }
 
 
