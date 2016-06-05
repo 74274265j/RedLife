@@ -1,94 +1,107 @@
 package com.newlogin.mainpage;
 
 import android.app.Activity;
-import android.content.Intent;
+import android.app.ProgressDialog;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
+import com.newlogin.Config;
 import com.newlogin.R;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-/**
- * Created by tarun on 5/17/2016.
- */
-public class NeedBlood extends Activity implements ListAdapter.customButtonListener {
-
-    private ListView listView;
-    ListAdapter adapter;
-    ArrayList<String> dataItems = new ArrayList<String>();
-    EditText inputSearch;
-
-
-    public void onButtonClickListner(int position, String value) {
-        Toast.makeText(NeedBlood.this, "Button click " + value,
-                Toast.LENGTH_SHORT).show();
-
-    }
-
+public class NeedBlood extends Activity {
+    private SimpleAdapter adpt;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.needblood);
-        String[] dataArray = getResources().getStringArray(R.array.listdata);
-        List<String> dataTemp = Arrays.asList(dataArray);
-        dataItems.addAll(dataTemp);
-        listView = (ListView) findViewById(R.id.listView);
-        adapter = new ListAdapter(NeedBlood.this, dataItems);
-        adapter.setCustomButtonListner(NeedBlood.this);
-        listView.setAdapter(adapter);
-        inputSearch = (EditText) findViewById(R.id.inputSearch);
 
-        inputSearch.addTextChangedListener(new TextWatcher() {
+        adpt  = new SimpleAdapter(new ArrayList<Contact>(), this);
+        ListView lView = (ListView) findViewById(R.id.listview);
 
-            @Override
-            public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
-                // When user changed the Text
-                NeedBlood.this.adapter.getFilter().filter(cs);
-            }
+        lView.setAdapter(adpt);
 
-            @Override
-            public void beforeTextChanged(CharSequence arg0, int arg1, int arg2,
-                                          int arg3) {
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable arg0) {
-                // TODO Auto-generated method stub
-            }
-        });
-
-
-    }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.req, menu);
-        return true;
+        // Exec async load task
+        (new AsyncListViewLoader()).execute(Config.LIST_VIEW);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.makeRequest) {
-            BloodRequest();
+
+    private class AsyncListViewLoader extends AsyncTask<String, Void, List<Contact>> {
+        private final ProgressDialog dialog = new ProgressDialog(NeedBlood.this);
+
+        @Override
+        protected void onPostExecute(List<Contact> result) {
+            super.onPostExecute(result);
+            dialog.dismiss();
+            adpt.setItemList(result);
+            adpt.notifyDataSetChanged();
         }
-        return super.onOptionsItemSelected(item);
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            dialog.setMessage("Downloading contacts...");
+            dialog.show();
+        }
+
+        @Override
+        protected List<Contact> doInBackground(String... params) {
+            List<Contact> result = new ArrayList<Contact>();
+
+            try {
+                URL u = new URL(params[0]);
+
+                HttpURLConnection conn = (HttpURLConnection) u.openConnection();
+                conn.setRequestMethod("GET");
+
+                conn.connect();
+                InputStream is = conn.getInputStream();
+
+                // Read the stream
+                byte[] b = new byte[1024];
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+                while ( is.read(b) != -1)
+                    baos.write(b);
+
+                String JSONResp = new String(baos.toByteArray());
+
+                JSONArray arr = new JSONArray(JSONResp);
+                for (int i=0; i < arr.length(); i++) {
+                    result.add(convertContact(arr.getJSONObject(i)));
+                }
+
+                return result;
+            }
+            catch(Throwable t) {
+                t.printStackTrace();
+            }
+            return null;
+        }
+
+        private Contact convertContact(JSONObject obj) throws JSONException {
+            String name = obj.getString("name");
+            String bloodgrp = obj.getString("bloodgrp");
+            String address = obj.getString("address");
+            String contactno = obj.getString("contactno");
+
+            return new Contact(name, bloodgrp, address, contactno);
+        }
+
     }
 
-    private void BloodRequest() {
 
-        Intent i=new Intent(this,MakeRequest.class);
-        this.startActivity(i);
-    }
+
 }

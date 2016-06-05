@@ -33,9 +33,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private boolean loggedIn = false;
     public void register(View v)
     {
+
         Intent i= new Intent(this,Register.class);
         startActivity(i);
-
 
 
     }

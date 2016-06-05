@@ -127,7 +127,8 @@
                 android:textColor="#7d2424"
                 android:typeface="serif"
                 android:textSize="20sp"
-                android:textAlignment="center"/>
+                android:textAlignment="center"
+                android:clickable="true" />
 
 
 
