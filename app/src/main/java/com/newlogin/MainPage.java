@@ -94,7 +94,7 @@ public class MainPage  extends Activity {
         String email = sharedPreferences.getString(Config.EMAIL_SHARED_PREF,"Not Available");
 
         //Showing the current logged in email to textview
-        textView.setText("Current User: " + email);
+        textView.setText("Welcome " + email + "!");
     }
 
     //Logout function
